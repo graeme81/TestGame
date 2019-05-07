@@ -1,0 +1,30 @@
+package game;
+
+import java.awt.Graphics;
+import javax.swing.*;
+
+public class GetOutGame {
+	
+	public final int HEIGHT = 800, WIDTH = 800;
+	public Renderer renderer;
+	
+	public GetOutGame() {
+		JFrame f = new JFrame();
+		
+		renderer = new Renderer();
+		
+		f.add(renderer);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(WIDTH, HEIGHT);
+		f.setResizable(false);
+		f.setVisible(true);
+	}
+
+	public static void repaint(Graphics g) {
+		
+		
+	}
+	
+	
+
+}
