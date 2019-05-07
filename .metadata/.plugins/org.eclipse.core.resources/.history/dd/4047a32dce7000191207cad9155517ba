@@ -1,0 +1,61 @@
+package game;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class GetOutGame implements ActionListener{
+	
+	public static final int WIDTH = 800, HEIGHT = 500;
+	public Renderer renderer;
+	public static Rectangle player;
+	public int ticks = 0, yMotion = 0;
+	
+	public GetOutGame() {
+		JFrame f = new JFrame();
+		
+		renderer = new Renderer();
+		Timer timer = new Timer(20, this);
+		
+		f.add(renderer);
+		f.setTitle("GET OUT!");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocation(250, 100);
+		f.setSize(WIDTH, HEIGHT);
+		f.setResizable(false);
+		f.setVisible(true);
+		
+		player = new Rectangle(WIDTH/2 - 10, HEIGHT - 50, 20, 20);
+		
+		timer.start();
+	}
+
+	public static void repaint(Graphics g) {
+		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.setColor(new Color(102,51,0));
+		g.fillRect(0, HEIGHT-100, WIDTH, 100);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(player.x, player.y, player.width, player.height);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		ticks++;
+		
+		if(ticks%2 == 0 && yMotion < 15) {
+			yMotion += 2;
+		}
+		player.y += yMotion;
+		renderer.repaint();
+		
+	}
+	
+	
+
+}
